@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { DM_Sans } from "next/font/google"
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -31,10 +31,11 @@ export default function RootLayout({
       >
         <Providers>
           <Suspense fallback={null}>
-          <div className="root-layout">
-          {children}
+            <div className="root-layout">
 
-          </div>
+              {children}
+
+            </div>
           </Suspense>
           <Toaster richColors closeButton/>
         

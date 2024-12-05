@@ -11,21 +11,24 @@ export function cn(...inputs: ClassValue[]) {
 
 // Convert cents to formatted currency string (e.g., 4999 -> "$49.99")
 export function formatPrice(cents: number | undefined): string {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("en-IN", {
     style: "currency",
-    currency: "USD",
-  }).format((cents || 0) / 100);
+    currency: "INR",
+  }).format(((cents || 0) / 100)*83);
 }
 
 // Convert dollars to cents (e.g., "49.99" -> 4999)
 export function dollarsToCents(dollars: string | number): number {
   const amount = typeof dollars === "string" ? parseFloat(dollars) : dollars;
-  return Math.round(amount * 100);
+  return Math.round((amount/83) * 100);
 }
 
 // Convert cents to dollars (e.g., 4999 -> "49.99")
 export function centsToDollars(cents: number | undefined): string {
-  return ((cents || 0) / 100).toString();
+  // return ((cents || 0) / 100).toString();
+  const dollars = (cents || 0) / 100; // Convert cents to dollars
+  const rupees = dollars * 83;       // Convert dollars to rupees (use the current exchange rate)
+  return rupees.toFixed(2).toString(); 
 }
 
 // Zod schema for price input (converts dollar input to cents)

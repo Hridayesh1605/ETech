@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Bell, BookOpen } from 'lucide-react'
 import { SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs'
 import { dark } from '@clerk/themes'
+import {motion} from "framer-motion"
 
 const NonDashboardNavbar = () => {
 
@@ -18,10 +19,18 @@ const NonDashboardNavbar = () => {
 
             
             <Link href="/" className='nondashboard-navbar__brand' scroll={false}>
+            <motion.span
+            initial={{x: -100, opacity: 0}}
+            animate={{x: 0, opacity: 1}}
+            transition={{duration: 0.5, delay: 0.5}}
+            >
             ETech
+
+            </motion.span>
+            
             </Link>
-            <div className='flex items-center gap-4'>
-                <div className='relative group'>
+            <div className='flex items-center gap-4 w-full'>
+                <div className='relative group w-full'>
                     <Link href="/search" className='nondashboard-navbar__search-input' scroll={false}>
                     <span className='hidden sm:inline'>Search Cources</span>
                     <span className='sm:hidden'>Search</span>
@@ -33,12 +42,12 @@ const NonDashboardNavbar = () => {
             
         </div>
         <div className="nondashboard-navbar__actions">
-            <button className="nondashboard-navbar__notification-button">
+            {/* <button className="nondashboard-navbar__notification-button">
                 <span className='nondashboard-navbar__notification-indicator'>
 
                 </span>
                 <Bell className='nondashboard-navbar__notification-icon'/>
-            </button>
+            </button> */}
 
             <SignedIn>
                 <UserButton
@@ -46,7 +55,7 @@ const NonDashboardNavbar = () => {
                     baseTheme:dark,
                     elements:{
                         userButtonOuterIdentifier:"text-customgreys-dirtyGrey",
-                        userButtonBox:"scale-90 sm:scale-100"
+                        userButtonBox:"scale-110 sm:scale-100"
                     }
                 }}
                 showName={true}

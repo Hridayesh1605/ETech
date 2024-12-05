@@ -249,7 +249,7 @@ input[type="color"] {
 }
 
 .landing__hero {
-  @apply flex justify-between items-center mt-12 h-[500px] rounded-lg bg-customgreys-secondarybg;
+  @apply flex justify-between items-center mt-12 h-[500px] rounded-lg ;
 }
 
 .landing__hero-content {
@@ -269,11 +269,11 @@ input[type="color"] {
 }
 
 .landing__cta-button {
-  @apply bg-primary-700 hover:bg-primary-600 px-4 py-2 rounded-md;
+  @apply bg-primary-700 hover:bg-black px-4 py-2 rounded-md;
 }
 
 .landing__hero-images {
-  @apply basis-1/2 h-full relative overflow-hidden rounded-r-lg;
+  @apply basis-1/2 h-full relative overflow-hidden rounded-full;
 }
 
 .landing__hero-image {
@@ -314,7 +314,7 @@ input[type="color"] {
 }
 
 .landing-skeleton__hero {
-  @apply flex justify-between items-center mt-12 h-[500px] rounded-lg bg-customgreys-secondarybg;
+  @apply flex justify-between items-center mt-12 h-[500px] rounded-lg ;
 }
 
 .landing-skeleton__hero-content {
@@ -338,7 +338,7 @@ input[type="color"] {
 }
 
 .landing-skeleton__hero-image {
-  @apply basis-1/2 h-full rounded-r-lg;
+  @apply basis-1/2 h-full rounded-full;
 }
 
 .landing-skeleton__featured {
@@ -716,11 +716,11 @@ input[type="color"] {
 }
 
 .course__instructor-title {
-  @apply text-sm;
+  @apply text-sm text-white-50;
 }
 
 .course__instructor-bio {
-  @apply text-sm;
+  @apply text-sm text-white-50 ;
 }
 
 /* Chapters Sidebar */
@@ -1012,7 +1012,7 @@ input[type="color"] {
 }
 
 .course-card__title {
-  @apply text-md lg:text-lg font-semibold line-clamp-2;
+  @apply text-md lg:text-lg font-semibold line-clamp-2 text-white-50;
 }
 
 .course-card__footer {
@@ -1235,7 +1235,7 @@ input[type="color"] {
 }
 
 .nondashboard-navbar__search {
-  @apply flex justify-between items-center gap-14;
+  @apply flex justify-between items-center gap-14 w-5/6;
 }
 
 .nondashboard-navbar__brand {
@@ -1243,7 +1243,7 @@ input[type="color"] {
 }
 
 .nondashboard-navbar__search-input {
-  @apply bg-customgreys-secondarybg pl-10 sm:pl-14 pr-6 sm:pr-20 py-3 sm:py-4 rounded-xl text-customgreys-dirtyGrey hover:text-white-50 hover:bg-customgreys-darkerGrey transition-all duration-300 text-sm sm:text-base;
+  @apply bg-customgreys-secondarybg pl-10 sm:pl-14 pr-6 sm:pr-20 py-3 sm:py-4 rounded-xl text-customgreys-dirtyGrey hover:text-white-50 hover:bg-customgreys-darkerGrey transition-all duration-300 text-sm sm:text-base w-full block;
 }
 
 .nondashboard-navbar__search-icon {
@@ -1468,7 +1468,7 @@ input[type="color"] {
 }
 
 .nondashboard-layout__main {
-  @apply flex flex-grow w-full h-full justify-center items-center;
+  @apply flex flex-grow w-full h-full justify-center items-center bg-customgreys-primarybg;
 }
 
 /* Auth Layout */
@@ -1564,4 +1564,12 @@ input[type="color"] {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+.typewriter {
+  /* font-family: "Courier New", Courier, monospace; */
+  white-space: pre-wrap; /* Ensure newlines work correctly */
+  overflow: hidden;
+  display: inline-block;
 }
