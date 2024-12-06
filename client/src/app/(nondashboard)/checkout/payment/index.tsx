@@ -19,56 +19,95 @@ const PaymentPageContent = () => {
     const { user } = useUser();
     const {signOut} = useClerk();
 
-    const handleSubmit = async(e:React.FormEvent)=>{
+    // const handleSubmit = async(e:React.FormEvent)=>{
+    //     e.preventDefault();
+    //     if (!stripe || !elements) {
+    //         toast.error("Stripe service is not available")
+    //         return;
+    //     }
+    //     // const result = await stripe.confirmPayment({
+    //     //     elements,
+    //     //     confirmParams: {
+    //     //         return_url: `${process.env.NEXT_PUBLIC_STRIPE_REDIRECT_URL}?id=${courseId}`,
+
+    //     //     },
+    //     //     redirect:"if_required",
+    //     // });
+
+    //     const baseUrl = process.env.NEXT_PUBLIC_LOCAL_URL
+    //     ? `http://${process.env.NEXT_PUBLIC_LOCAL_URL}`
+    //     : process.env.NEXT_PUBLIC_VERCEL_URL
+    //     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    //     : undefined;
+
+    //     const result = await stripe.confirmPayment({
+    //         elements,
+    //         confirmParams: {
+    //             return_url: `${baseUrl}/checkout?step=3&id=${courseId}`,
+
+    //         },
+    //         redirect:"if_required"
+    //     });
+
+
+
+
+
+
+    //     if (result.paymentIntent?.status==="succeeded") {
+    //         const transactionData: Partial<Transaction> = {
+    //             transactionId:result.paymentIntent.id,
+    //             userId:user?.id,
+    //             courseId:courseId,
+    //             paymentProvider:"stripe",
+    //             amount:course?.price || 0
+    //         }
+
+    //         await createTransaction(transactionData),
+    //         navigateToStep(3);
+
+    //     }
+
+    // };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+    
         if (!stripe || !elements) {
-            toast.error("Stripe service is not available")
-            return;
+          toast.error("Stripe service is not available");
+          return;
         }
-        // const result = await stripe.confirmPayment({
-        //     elements,
-        //     confirmParams: {
-        //         return_url: `${process.env.NEXT_PUBLIC_STRIPE_REDIRECT_URL}?id=${courseId}`,
-
-        //     },
-        //     redirect:"if_required",
-        // });
-
+    
         const baseUrl = process.env.NEXT_PUBLIC_LOCAL_URL
-        ? `http://${process.env.NEXT_PUBLIC_LOCAL_URL}`
-        : process.env.NEXT_PUBLIC_VERCEL_URL
-        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-        : undefined;
+          ? `http://${process.env.NEXT_PUBLIC_LOCAL_URL}`
+          : process.env.NEXT_PUBLIC_VERCEL_URL
+          ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+          : undefined;
 
+          console.log(baseUrl)
+    
         const result = await stripe.confirmPayment({
-            elements,
-            confirmParams: {
-                return_url: `${baseUrl}/checkout?step=3&id=${courseId}`,
-
-            },
-            redirect:"if_required"
+          elements,
+          confirmParams: {
+            return_url: `${baseUrl}/checkout?step=3&id=${courseId}`,
+          },
+          redirect: "if_required",
         });
-
-
-
-
-
-
-        if (result.paymentIntent?.status==="succeeded") {
-            const transactionData: Partial<Transaction> = {
-                transactionId:result.paymentIntent.id,
-                userId:user?.id,
-                courseId:courseId,
-                paymentProvider:"stripe",
-                amount:course?.price || 0
-            }
-
-            await createTransaction(transactionData),
-            navigateToStep(3);
-
+    
+        if (result.paymentIntent?.status === "succeeded") {
+          const transactionData: Partial<Transaction> = {
+            transactionId: result.paymentIntent.id,
+            userId: user?.id,
+            courseId: courseId,
+            paymentProvider: "stripe",
+            amount: course?.price || 0,
+          };
+    
+          await createTransaction(transactionData), navigateToStep(3);
         }
+      };
 
-    };
+
 
     const handleSignOutandNavigate = async() =>{
         await signOut();
