@@ -25,29 +25,29 @@ const PaymentPageContent = () => {
             toast.error("Stripe service is not available")
             return;
         }
-        // const result = await stripe.confirmPayment({
-        //     elements,
-        //     confirmParams: {
-        //         return_url: `${process.env.NEXT_PUBLIC_STRIPE_REDIRECT_URL}?id=${courseId}`,
-
-        //     },
-        //     redirect:"if_required",
-        // });
-
-        const baseUrl = process.env.NEXT_PUBLIC_LOCAL_URL
-        ? `http://${process.env.NEXT_PUBLIC_LOCAL_URL}`
-        : process.env.NEXT_PUBLIC_VERCEL_URL
-        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-        : undefined;
-
         const result = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: `${baseUrl}/checkout?step=3&id=${courseId}`,
+                return_url: `https://e-tech-pgitcju42-hridayesh1605s-projects.vercel.app/checkout?step=3?id=${courseId}`,
 
             },
-            redirect:"if_required"
+            redirect:"if_required",
         });
+
+        // const baseUrl = process.env.NEXT_PUBLIC_LOCAL_URL
+        // ? `http://${process.env.NEXT_PUBLIC_LOCAL_URL}`
+        // : process.env.NEXT_PUBLIC_VERCEL_URL
+        // ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+        // : undefined;
+
+        // const result = await stripe.confirmPayment({
+        //     elements,
+        //     confirmParams: {
+        //         return_url: `${baseUrl}/checkout?step=3&id=${courseId}`,
+
+        //     },
+        //     redirect:"if_required"
+        // });
 
 
 
