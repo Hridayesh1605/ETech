@@ -229,8 +229,9 @@ export const getCourse = async (req: Request, res: Response): Promise<void> => {
         Expires: 60,
         ContentType: fileType,
       };
-      const uploadUrl = s3.getSignedUrl("putObject",s3Params);
+      const uploadUrl = s3.getSignedUrlPromise("putObject",s3Params);
       const videoUrl = `${process.env.CLOUDFRONT_DOMAIN}/videos/${uniqueId}/${fileName}`;
+      
 
       res.json({
         message:"Upload URL generated successfully",

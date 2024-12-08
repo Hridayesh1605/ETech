@@ -25,10 +25,19 @@ const PaymentPageContent = () => {
             toast.error("Stripe service is not available")
             return;
         }
+        // const result = await stripe.confirmPayment({
+        //     elements,
+        //     confirmParams: {
+        //         return_url: `https://e-tech-pgitcju42-hridayesh1605s-projects.vercel.app/checkout?step=3?id=${courseId}`,
+
+        //     },
+        //     redirect:"if_required",
+        // });
+
         const result = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: `https://e-tech-pgitcju42-hridayesh1605s-projects.vercel.app/checkout?step=3?id=${courseId}`,
+                return_url: `http://localhost:3000/checkout?step=3?id=${courseId}`,
 
             },
             redirect:"if_required",

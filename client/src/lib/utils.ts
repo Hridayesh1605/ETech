@@ -377,7 +377,7 @@ async function uploadVideo(
       body: file,
     });
     toast.success(
-      `Video uploaded successfully for chapter ${chapter.chapterId}`
+      `Video uploaded successfully for chapter ${chapter.chapterId}// ${uploadUrl}`
     );
 
     return { ...chapter, video: videoUrl };
