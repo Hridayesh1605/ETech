@@ -336,7 +336,9 @@ export const uploadAllVideos = async (
             updatedSections[i].sectionId,
             getUploadVideoUrl
           );
+          console.log("1",updatedChapter)
           updatedSections[i].chapters[j] = updatedChapter;
+          console.log("2",updatedChapter)
         } catch (error) {
           console.error(
             `Failed to upload for chapter ${chapter.chapterId}:`,
