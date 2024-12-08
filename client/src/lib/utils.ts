@@ -3,7 +3,6 @@ import { twMerge } from "tailwind-merge";
 import * as z from "zod";
 import { api } from "../state/api";
 import { toast } from "sonner";
-// import { toast } from "sonner";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -11,24 +10,21 @@ export function cn(...inputs: ClassValue[]) {
 
 // Convert cents to formatted currency string (e.g., 4999 -> "$49.99")
 export function formatPrice(cents: number | undefined): string {
-  return new Intl.NumberFormat("en-IN", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "INR",
-  }).format(((cents || 0) / 100)*83);
+    currency: "USD",
+  }).format((cents || 0) / 100);
 }
 
 // Convert dollars to cents (e.g., "49.99" -> 4999)
 export function dollarsToCents(dollars: string | number): number {
   const amount = typeof dollars === "string" ? parseFloat(dollars) : dollars;
-  return Math.round((amount/83) * 100);
+  return Math.round(amount * 100);
 }
 
 // Convert cents to dollars (e.g., 4999 -> "49.99")
 export function centsToDollars(cents: number | undefined): string {
-  // return ((cents || 0) / 100).toString();
-  const dollars = (cents || 0) / 100; // Convert cents to dollars
-  const rupees = dollars * 83;       // Convert dollars to rupees (use the current exchange rate)
-  return rupees.toFixed(2).toString(); 
+  return ((cents || 0) / 100).toString();
 }
 
 // Zod schema for price input (converts dollar input to cents)
@@ -332,6 +328,7 @@ export const uploadAllVideos = async (
     for (let j = 0; j < updatedSections[i].chapters.length; j++) {
       const chapter = updatedSections[i].chapters[j];
       if (chapter.video instanceof File && chapter.video.type === "video/mp4") {
+        console.log("addsfasdfadfsad")
         try {
           const updatedChapter = await uploadVideo(
             chapter,
@@ -342,7 +339,7 @@ export const uploadAllVideos = async (
           updatedSections[i].chapters[j] = updatedChapter;
         } catch (error) {
           console.error(
-            `Failed to upload video for chapter ${chapter.chapterId}:`,
+            `Failed to upload for chapter ${chapter.chapterId}:`,
             error
           );
         }
